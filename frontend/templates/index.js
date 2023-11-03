@@ -15,7 +15,7 @@ async function sendSaveRequest() {
   };
 
   // Send a POST request using the Fetch API
-  const response = await fetch('http://localhost:8080/auth/register', {
+  const response = await fetch('https://five-nv5o.onrender.com/auth/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ async function sendSaveRequest() {
 //This function is used to fetch the data from the backend and load it in frontend
 async function fetchData() {
     try {
-        const response = await fetch('http://localhost:8080/getData', {
+        const response = await fetch('https://five-nv5o.onrender.com/getData', {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -98,7 +98,7 @@ async function sendEmail() {
     if (checkedEmails.length > 0) {
       try {
         for (let index = 0; index < checkedEmails.length; index++) {
-          const response = await fetch('http://localhost:8080/sendEmail', {
+          const response = await fetch('https://five-nv5o.onrender.com/sendEmail', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -147,7 +147,7 @@ async function sendRowOverMail() {
   if (checkedEmail.length > 0) {
     try {
       console.log(checkedEmail);
-        const response = await fetch('http://localhost:8080/sendData', {
+        const response = await fetch('https://five-nv5o.onrender.com/sendData', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -209,7 +209,7 @@ async function sendRowOverMail() {
     if (checkedIds.length > 0) {
       try {
         for (let index = 0; index < checkedIds.length; index++) {
-          const response = await fetch('http://localhost:8080/deleteData', {
+          const response = await fetch('https://five-nv5o.onrender.com/deleteData', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
