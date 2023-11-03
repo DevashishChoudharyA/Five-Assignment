@@ -1,0 +1,57 @@
+<!DOCTYPE html5>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="../static/index.css">
+    <script src="./index.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="form-container">
+    <form >
+        <label for="username">Name:</label>
+        <input type="text"  id="username" name="username" required>
+
+        <label for="email">Email:</label>
+        <input type="email"  id="email" name="email" required>
+
+        <label for="phoneno">Phone Number:</label>
+        <input type="text" id="phoneno" name="phoneno"  required/>
+
+        <label>Hobbies:</label>
+        <input type="text" id="hobbies" name="hobbies" required/>
+
+        <button type="button" onclick="sendSaveRequest()">Save</button>
+        
+    </form>
+    
+</div>
+
+
+<div >
+<table>
+    <thead>
+      <tr >
+    
+        <th class="space">Select</th>
+        <th class="space">ID</th>
+        <th class="space">Name</th>
+        <th class="space">Phone Number</th>
+        <th class="space">Email</th>
+        <th class="space">Hobbies</th>
+      </tr>
+    </thead>
+    <tbody id="dataBody">
+
+        
+
+    </tbody>
+  </table>
+
+  <button onClick="sendEmail()">Send Email</button>
+  <button onClick="sendRowOverMail()">Send Data To Anye</button>
+  <button onClick="deleteData()">Delete</button>
+</div>
+</body>
+</html>
