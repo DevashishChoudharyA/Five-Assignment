@@ -6,6 +6,20 @@ async function sendSaveRequest() {
   const phoneno = document.getElementById('phoneno').value;
   const hobbies = document.getElementById('hobbies').value;
 
+  const warn = document.getElementById('warning');
+
+    if (!validateEmail(email) &&   warn) {
+      warn.innerText = "The email entered is wrong";
+      console.log("Email is not valid");
+      return;
+    }
+
+    if(!validatePhoneNumber(phoneno) && warn) {
+      warn.innerText = "The phone number entered is wrong";
+      console.log("Phone number is not valid");
+      return;
+    }
+
   // Create an object with the form data
   const formData = {
     username: name,
@@ -31,6 +45,21 @@ async function sendSaveRequest() {
     console.log('Error saving data from front end to the server');
   }
 }
+
+  // This regex allows for various email formats, adjust as needed
+function validateEmail(email) {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
+
+function validatePhoneNumber(phoneNumber) {
+  // This regex allows for various phone number formats, adjust as needed
+  const phoneRegex = /^[0-9()+-]*$/;
+  const isValidLength = phoneNumber.length >= 10 && phoneNumber.length <= 12;
+  return phoneRegex.test(phoneNumber) && isValidLength;
+}
+
+
 
 //This function is used to fetch the data from the backend and load it in frontend
 async function fetchData() {
@@ -219,12 +248,12 @@ async function sendRowOverMail() {
           });
 
           if (response.ok) {
-            console.log('Emails sent successfully!');
-            location.reload();
+            console.log('Data deleted!');
           } else {
             console.log('Failed to send emails.');
           }
         }
+        location.reload();
       } catch (error) {
         console.error('Error sending emails:', error);
       }
@@ -239,10 +268,10 @@ async function sendRowOverMail() {
     
       checkboxes.forEach((checkbox) => {
         const row = checkbox.closest('tr');
-        const idCell = row.querySelector('td:nth-child(2)'); //email is in the 5th column
+        const idCell = row.querySelector('td:nth-child(2)'); //ids is in the 2nd column
         const id = idCell.textContent;
         checkedIds.push(id);
       });
-    
+    console.log(checkedIds);
       return checkedIds;
     }
