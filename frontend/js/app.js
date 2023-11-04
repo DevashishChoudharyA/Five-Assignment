@@ -24,6 +24,7 @@ async function sendSaveRequest() {
   });
   if (response.ok) {
     const result = await response.text();
+    location.reload();
     console.log(result);
     // await fetchData();
   } else {
@@ -219,6 +220,7 @@ async function sendRowOverMail() {
 
           if (response.ok) {
             console.log('Emails sent successfully!');
+            location.reload();
           } else {
             console.log('Failed to send emails.');
           }
