@@ -16,6 +16,11 @@ exports.sendData = void 0;
 const nodemailer = require("nodemailer");
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
+const user = process.env.user;
+const password = process.env.pass;
+const toMail = process.env.toMail;
 // async..await is not allowed in global scope, must use a wrapper
 exports.sendData = app.post('/sendData', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log('SENDING MAIL FOR ROWS AND COLUMNS');
@@ -25,14 +30,14 @@ exports.sendData = app.post('/sendData', (req, res) => __awaiter(void 0, void 0,
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
-            user: 'uriel.runte71@ethereal.email',
-            pass: 'eQhGpaAsUxy2MMdBpU'
+            user: user,
+            pass: password
         }
     });
     // send mail with defined transport object
     const info = yield transporter.sendMail({
-        from: 'uriel.runte71@ethereal.email',
-        to: "anyemail@mail.com",
+        from: user,
+        to: toMail,
         subject: "Dev's Message",
         text: data,
         html: "<b>Hello world?</b>", // html body

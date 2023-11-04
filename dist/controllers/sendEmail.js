@@ -16,6 +16,8 @@ exports.sendEmail = void 0;
 const nodemailer = require("nodemailer");
 const express_1 = __importDefault(require("express"));
 const app = (0, express_1.default)();
+const user = process.env.user;
+const password = process.env.pass;
 // async..await is not allowed in global scope, must use a wrapper
 exports.sendEmail = app.post('/sendEmail', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     console.log('SENDING MAIL');
@@ -25,13 +27,13 @@ exports.sendEmail = app.post('/sendEmail', (req, res) => __awaiter(void 0, void 
         host: 'smtp.ethereal.email',
         port: 587,
         auth: {
-            user: 'uriel.runte71@ethereal.email',
-            pass: 'eQhGpaAsUxy2MMdBpU'
+            user: user,
+            pass: password
         }
     });
     // send mail with defined transport object
     const info = yield transporter.sendMail({
-        from: 'uriel.runte71@ethereal.email',
+        from: user,
         to: to,
         subject: "Dev's Message",
         text: "hi from Dev",
