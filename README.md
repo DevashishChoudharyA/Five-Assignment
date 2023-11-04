@@ -67,10 +67,10 @@ The task Deadline is 48 + 6 hours from the time when the task is assigned to you
 The primary code lang will be typescript
 # Screenshots Of Project 
 
-The Frontend Deployment 
+The Backend Deployment 
 ![FrontendDeployment](images/BackendDeployed.png)
 
-The Backend Deployment
+The Frontend Deployment
 ![BackendDeployment](images/FrontendDeployed.png)
 
 The FrontEnd UI
