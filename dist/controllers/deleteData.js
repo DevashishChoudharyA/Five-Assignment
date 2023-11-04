@@ -16,7 +16,7 @@ const deleteData = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         const { id } = req.body;
         console.log(id);
         if (!id) {
-            console.log("input data in empty");
+            console.log("input data is empty");
             return res.sendStatus(400);
         }
         const deleteWithId = yield (0, users_1.deleteUserById)(id);

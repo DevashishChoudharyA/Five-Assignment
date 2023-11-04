@@ -6,6 +6,8 @@ import compression from 'compression';
 import http from 'http';
 import mongoose from 'mongoose';
 import router from './router';
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 app.use(cors({
@@ -25,9 +27,12 @@ server.listen(8080,()=> {
 });
 
 //initializers data for database
-const MONGO_URL ="mongodb+srv://Devashish:Devashish@cluster0.bwlaq6l.mongodb.net/?retryWrites=true&w=majority";
-const db_name = "test";
-const collecton_name = "users";
+const MONGO_URL = process.env.MONGO_URL;
+const db_name = process.env.db_name;
+const collecton_name = process.env.collection_name;
+if (!MONGO_URL) {
+    throw new Error('MONGO_URL is not defined in the environment variables.');
+  }
 mongoose.Promise=Promise;
 mongoose.connect(MONGO_URL);
 
