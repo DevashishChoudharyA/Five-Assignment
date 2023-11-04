@@ -275,3 +275,76 @@ async function sendRowOverMail() {
     console.log(checkedIds);
       return checkedIds;
     }
+
+
+
+    // Update all the values of a particular row
+let idForUpdate ;
+ async function openPopup() {
+    const getTheUpdateID = await getIdsToBeDeleted();
+    const updatewarn = document.getElementById('updateWarning');
+    if(getTheUpdateID.length==0) {
+      updatewarn.innerText = "You need to select 1 row to update";
+      return;
+    }else if (getTheUpdateID.length==1) {
+      document.getElementById('popup').style.display = 'block';
+      idForUpdate=getTheUpdateID;
+    }else {
+      updatewarn.innerText="You can only update one row at a time";
+    } 
+  }
+
+  async function submitForm() {
+    const name = document.getElementById('username1').value;
+    const email = document.getElementById('email1').value;
+    const phoneno = document.getElementById('phoneno1').value;
+    const hobbies = document.getElementById('hobbies1').value;
+
+    console.log(name);
+    console.log(email);
+    console.log(phoneno);
+    console.log(hobbies);
+    const warnPop = document.getElementById('warningPop');
+
+    if (!validateEmail(email) &&   warnPop) {
+      warnPop.innerText = "The email entered is wrong";
+      console.log("Email is not valid");
+      return;
+    }
+
+    if(!validatePhoneNumber(phoneno) && warnPop) {
+      warnPop.innerText = "The phone number entered is wrong";
+      console.log("Phone number is not valid");
+      return;
+    }
+
+    const formData = {
+      id : idForUpdate[0],
+      username: name,
+      email: email,
+      phoneno: phoneno,
+      hobbies: hobbies
+    };
+    console.log(formData);
+
+    const response = await fetch('http://localhost:8080/updateRow', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(formData),
+  });
+  if (response.ok) {
+    const result = await response.text();
+    location.reload();
+    console.log(result);
+    // await fetchData();
+  } else {
+    console.log('Error saving data from front end to the server');
+  }
+    // You can do further processing with the data here
+
+    // Close the popup
+    document.getElementById('popup').style.display = 'none';
+    location.reload();
+  }

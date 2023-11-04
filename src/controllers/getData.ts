@@ -9,7 +9,7 @@ const app = express();
 const MONGO_URL =process.env.MONGO_URL;
 const db_name = process.env.db_name;
 const collection_name = process.env.collection_name;
-
+console.log(MONGO_URL,db_name,collection_name);
 if (!MONGO_URL || !db_name || !collection_name) {
   throw new Error('One or more required environment variables are not defined.');
 }
